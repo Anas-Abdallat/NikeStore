@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    button
+    {box-shadow: 20px 10px blanchedalmond;
+     border-radius: 12px;
+       font-weight: bold;
+       color:green;
+       padding: 20px;
+    }
+  </style>
+<head>
+  <meta charset="UTF-8">
+  
+  <link rel="stylesheet" href="invoice.css">
+    <title>Invoice</title>
+  </head>
+  <body>
+      <body>
+        <header>
+          <h1>Invoice</h1>
+          <address>
+            <p>Name: <span id="name"></span> <input type="text"></p>
+            <p>City To Delivery: <span id="city"></span><input type="text"></p>
+            <p>Phone Number: <span id="phone"><input type="number"></span></p>
+          </address>
+        </header>
+        <article>
+          <table class="inventory">
+            <thead>
+              <tr>
+                <th>Product name</th>
+                <th>Description</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody id="row">
+            </tbody>
+          </table>
+          <table class="balance">
+
+            <tr>
+              <th>Total</th>
+              <td id="total"></td>
+            </tr>
+          </table>
+         
+        </article>
+       
+        <script>
+       
+          document.getElementById("total").innerHTML = localStorage.getItem('sum')+" JD";
+          var row=document.getElementById("row");
+          var array1 = JSON.parse(localStorage.getItem("details"));
+          
+          var arr2;
+          
+          array1.forEach(element => {
+            var innerRow = `<tr>
+                <td class='center'> ${element.name} </td>
+                <td class='center'> ${element.tit} </td> 
+                <td class='center'> ${element.price} </td>
+              </tr>`;
+              
+              row.innerHTML += innerRow;
+              localStorage.clear();
+          });
+          
+        </script>
+        
+        <center><div><button onClick="window.print()">Print this page
+        </button></div></center> 
+  </body>
+</html>
